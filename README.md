@@ -40,8 +40,10 @@ _select sum(quantity) from orders;_<br>
 2125<br>
 
 __8. How much was spent on books?__<br>
-_select sum(price) from items where category like '%books%';_<br>
-59241<br>
+
+_select items.category from items where category like '%Books%';_<br>
+_select sum((items.price * orders.quantity) / 100) as total from orders join items on items.id = orders.item_id where items.category like '%Books%';_<br>
+10799<br>
 
 __9. Simulate buying an item by inserting a User for yourself and an Order for that User.__<br>
 _insert into users (first_name, last_name, email) values ('Sophie', 'Khan', 'sophiaxkhan@gmail.com');_<br>
